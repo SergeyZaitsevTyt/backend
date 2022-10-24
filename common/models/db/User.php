@@ -25,14 +25,6 @@ class User extends BaseUser
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'user';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return array_merge(parent::rules(), [

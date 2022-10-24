@@ -19,14 +19,6 @@ class BasePost extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
-        return 'post';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
