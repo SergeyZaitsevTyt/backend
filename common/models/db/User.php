@@ -18,7 +18,7 @@ use Yii;
  * @property int $updated_at
  * @property string|null $verification_token
  *
- * @property Post[] $posts0
+ * @property Post[] $posts
  */
 class User extends BaseUser
 {
@@ -35,43 +35,9 @@ class User extends BaseUser
      */
     public function rules()
     {
-        return [
-            [['name', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
-            [['name', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
-            [['auth_key'], 'string', 'max' => 32],
-            [['name'], 'unique'],
-            [['email'], 'unique'],
-            [['password_reset_token'], 'unique'],
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'userId' => 'User ID',
-            'name' => 'Name',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email' => 'Email',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'verification_token' => 'Verification Token',
-        ];
-    }
-
-    /**
-     * Gets query for [[Posts0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPosts0()
-    {
-        return $this->hasMany(Post::className(), ['userId' => 'userId']);
+        return array_merge(parent::rules(), [
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+        ]);
     }
 }
