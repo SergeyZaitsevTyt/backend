@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\db\User */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Пользователи', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'userId' => $model->userId], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'userId' => $model->userId], [
+        <?= Html::a('Редактировать', ['update', 'userId' => $model->userId], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Удалить', ['delete', 'userId' => $model->userId], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Вы хотите удалить данного пользователя?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,14 +31,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'userId',
             'name',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            //'auth_key',
+            //'password_hash',
+            //'password_reset_token',
             'email:email',
             'status',
             'created_at',
             'updated_at',
-            'verification_token',
+            //'verification_token',
         ],
     ]) ?>
 
