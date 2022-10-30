@@ -35,7 +35,9 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Главная', 'url' => ['/site/index']],
+        ['label' => 'Пользователи', 'url' => ['/user/index']],
+        ['label' => 'Посты', 'url' => ['/post/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -49,7 +51,7 @@ AppAsset::register($this);
     } else {
         echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->name . ')',
+                'Выйти (' . Yii::$app->user->identity->name . ')',
                 ['class' => 'btn btn-link logout text-decoration-none']
             )
             . Html::endForm();

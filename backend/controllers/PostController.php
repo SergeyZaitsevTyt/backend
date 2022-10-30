@@ -1,17 +1,17 @@
 <?php
 
-namespace common\models\db\controllers;
+namespace backend\controllers;
 
-use common\models\db\User;
-use common\models\db\UserSearch;
+use common\models\db\Post;
+use common\models\db\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * PostController implements the CRUD actions for Post model.
  */
-class UserController extends Controller
+class PostController extends Controller
 {
     /**
      * @inheritDoc
@@ -32,13 +32,13 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
+     * Lists all Post models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
+        $searchModel = new PostSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -48,30 +48,30 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
-     * @param int $userId ID пользователя
+     * Displays a single Post model.
+     * @param int $postId ID поста
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($userId)
+    public function actionView($postId)
     {
         return $this->render('view', [
-            'model' => $this->findModel($userId),
+            'model' => $this->findModel($postId),
         ]);
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new Post();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'userId' => $model->userId]);
+                return $this->redirect(['view', 'postId' => $model->postId]);
             }
         } else {
             $model->loadDefaultValues();
@@ -83,18 +83,18 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $userId ID пользователя
+     * @param int $postId ID поста
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($userId)
+    public function actionUpdate($postId)
     {
-        $model = $this->findModel($userId);
+        $model = $this->findModel($postId);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'userId' => $model->userId]);
+            return $this->redirect(['view', 'postId' => $model->postId]);
         }
 
         return $this->render('update', [
@@ -103,29 +103,29 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $userId ID пользователя
+     * @param int $postId ID поста
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($userId)
+    public function actionDelete($postId)
     {
-        $this->findModel($userId)->delete();
+        $this->findModel($postId)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the User model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $userId ID пользователя
-     * @return User the loaded model
+     * @param int $postId ID поста
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($userId)
+    protected function findModel($postId)
     {
-        if (($model = User::findOne(['userId' => $userId])) !== null) {
+        if (($model = Post::findOne(['postId' => $postId])) !== null) {
             return $model;
         }
 

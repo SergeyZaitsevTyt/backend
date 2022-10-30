@@ -7,10 +7,10 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\db\searchs\PostSearch */
+/* @var $searchModel common\models\db\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Posts';
+$this->title = 'Посты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="post-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Post', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать пост', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
